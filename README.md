@@ -1,58 +1,51 @@
+## 📊 Class Diagram (Mermaid)
+
+```mermaid
 classDiagram
 
 class Person {
     <<abstract>>
-    -string firstname
-    -string lastname
-    -string phone
-    -string email
+    +string FirstName
+    +string LastName
+    +string Phone
+    +string Email
     +Register()
-    +ShowInfo()
+    +DisplayInfo()
 }
 
-class IRegister {
+class IRegistrable {
     <<interface>>
-    +Register()
+    +RegisterTraining()
 }
 
 class ITrainer {
     <<interface>>
-    +Teach()
+    +ConductTraining()
     +ApproveResult()
 }
 
 class Student {
-    -string studentId
-    -string major
-    +Register()
-    +ShowInfo()
+    +string Major
+    +string StudentID
 }
 
 class Teacher {
-    -string major
-    -string academicPosition
-    +Register()
-    +ShowInfo()
-    +Teach()
-    +ApproveResult()
+    +string Major
+    +string AcademicPosition
 }
 
 class GeneralPerson {
-    -string workplace
-    -string position
-    +Register()
-    +ShowInfo()
-    +Teach()
-    +ApproveResult()
+    +string Workplace
+    +string Position
 }
 
 Person <|-- Student
 Person <|-- Teacher
 Person <|-- GeneralPerson
 
-IRegister <|.. Student
-IRegister <|.. Teacher
-IRegister <|.. GeneralPerson
+IRegistrable <|.. Student
+IRegistrable <|.. Teacher
+IRegistrable <|.. GeneralPerson
 
 ITrainer <|.. Teacher
 ITrainer <|.. GeneralPerson
