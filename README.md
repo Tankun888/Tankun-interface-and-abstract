@@ -1,127 +1,58 @@
-# Training Registration System
-
-## 📖 Project Description
-
-ระบบลงทะเบียนอบรมที่รองรับบุคคล 4 ประเภท ได้แก่
-
-- นักศึกษา (Student)
-- อาจารย์ (Teacher)
-- บุคคลทั่วไป (GeneralPerson)
-- วิทยากร (Trainer Role)
-
-ระบบสามารถ:
-- เพิ่มข้อมูลผู้เข้าอบรม
-- เพิ่มข้อมูลวิทยากร
-- แสดงรายชื่อผู้เข้าอบรม
-- แสดงรายชื่อวิทยากร
-
----
-
-## 🏗 Object-Oriented Design
-
-โครงสร้างระบบออกแบบตามหลัก OOP โดยใช้
-
-- Abstract Class
-- Interface
-- Inheritance
-- Polymorphism
-
----
-
-## 🔹 Class Structure
-
-### 1️⃣ Abstract Class
-
-**Person**
-- FirstName
-- LastName
-- Phone
-- Email
-- DisplayInfo()
-- Register()
-
----
-
-### 2️⃣ Interface
-
-**IRegistrable**
-- RegisterTraining()
-
-**ITrainer**
-- ConductTraining()
-- ApproveResult()
-
----
-
-### 3️⃣ Classes
-
-**Student**
-- Major
-- StudentID
-- implements IRegistrable
-
-**Teacher**
-- Major
-- AcademicPosition
-- implements IRegistrable
-- implements ITrainer
-
-**GeneralPerson**
-- Workplace
-- Position
-- implements IRegistrable
-- implements ITrainer
-
----
-
-## 📊 Class Diagram (Mermaid)
-
-```mermaid
 classDiagram
 
 class Person {
     <<abstract>>
-    +string FirstName
-    +string LastName
-    +string Phone
-    +string Email
+    -string firstname
+    -string lastname
+    -string phone
+    -string email
     +Register()
-    +DisplayInfo()
+    +ShowInfo()
 }
 
-class IRegistrable {
+class IRegister {
     <<interface>>
-    +RegisterTraining()
+    +Register()
 }
 
 class ITrainer {
     <<interface>>
-    +ConductTraining()
+    +Teach()
     +ApproveResult()
 }
 
 class Student {
-    +string Major
-    +string StudentID
+    -string studentId
+    -string major
+    +Register()
+    +ShowInfo()
 }
 
 class Teacher {
-    +string Major
-    +string AcademicPosition
+    -string major
+    -string academicPosition
+    +Register()
+    +ShowInfo()
+    +Teach()
+    +ApproveResult()
 }
 
 class GeneralPerson {
-    +string Workplace
-    +string Position
+    -string workplace
+    -string position
+    +Register()
+    +ShowInfo()
+    +Teach()
+    +ApproveResult()
 }
 
 Person <|-- Student
 Person <|-- Teacher
 Person <|-- GeneralPerson
 
-IRegistrable <|.. Student
-IRegistrable <|.. Teacher
-IRegistrable <|.. GeneralPerson
+IRegister <|.. Student
+IRegister <|.. Teacher
+IRegister <|.. GeneralPerson
 
 ITrainer <|.. Teacher
 ITrainer <|.. GeneralPerson
