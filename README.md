@@ -7,10 +7,10 @@ classDiagram
 
 class Person {
     <<abstract>>
-    +string FirstName
-    +string LastName
-    +string Phone
-    +string Email
+    -string FirstName
+    -string LastName
+    -string Phone
+    -string Email
     +Register()
     +DisplayInfo()
 }
@@ -27,18 +27,25 @@ class ITrainer {
 }
 
 class Student {
-    +string Major
-    +string StudentID
+    -string Major
+    -string StudentID
+    +RegisterTraining()
 }
 
 class Teacher {
-    +string Major
-    +string AcademicPosition
+    -string Major
+    -string AcademicPosition
+    +RegisterTraining()
+    +ConductTraining()
+    +ApproveResult()
 }
 
 class GeneralPerson {
-    +string Workplace
-    +string Position
+    -string Workplace
+    -string Position
+    +RegisterTraining()
+    +ConductTraining()
+    +ApproveResult()
 }
 
 Person <|-- Student
